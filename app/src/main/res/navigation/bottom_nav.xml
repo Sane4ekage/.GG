@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_nav"
+    app:startDestination="@id/lolFragment">
+
+    <fragment
+        android:id="@+id/lolFragment"
+        android:name="com.sane4ek.zefirgg.lol.presentation.LolFragment"
+        android:label="fragment_lol"
+        tools:layout="@layout/fragment_lol" />
+    <fragment
+        android:id="@+id/valorantFragment"
+        android:name="com.sane4ek.zefirgg.valorant.ValorantFragment"
+        android:label="fragment_valorant"
+        tools:layout="@layout/fragment_valorant" />
+    <fragment
+        android:id="@+id/secretFragment"
+        android:name="com.sane4ek.zefirgg.secret.SecretFragment"
+        android:label="fragment_secret"
+        tools:layout="@layout/fragment_secret" />
+</navigation>

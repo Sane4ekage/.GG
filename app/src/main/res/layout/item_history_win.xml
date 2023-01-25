@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:layout_marginBottom="12dp"
+    android:background="@drawable/history_pink_back">
+
+    <TextView
+        android:id="@+id/textTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="1dp"
+        android:fontFamily="@font/regular"
+        android:text=" - 38м"
+        android:textColor="#FFFFFF"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textDays"
+        app:layout_constraintEnd_toStartOf="@+id/textKills"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textDays"
+        app:layout_constraintTop_toTopOf="@+id/textDays" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView555"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="6dp"
+        android:backgroundTint="#FFFFFF"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/cardView666"
+        app:layout_constraintTop_toTopOf="@+id/cardView666">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/item5"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_margin="3dp"
+            app:riv_corner_radius="4dip" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView4aT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="12dp"
+        android:backgroundTint="#FFFFFF"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView4a">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/totem"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_margin="3dp"
+            app:riv_corner_radius="4dip" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView444"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="6dp"
+        android:backgroundTint="#FFFFFF"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/cardView555"
+        app:layout_constraintTop_toTopOf="@+id/cardView666">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/item4"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_margin="3dp"
+            app:riv_corner_radius="4dip" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView666"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="6dp"
+        android:backgroundTint="#FFFFFF"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/cardView4aT"
+        app:layout_constraintTop_toTopOf="@+id/cardView4aT">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/item6"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_margin="3dp"
+            app:riv_corner_radius="4dip" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView42"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="6dp"
+        android:backgroundTint="#FFFFFF"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/cardView42ffdsfa"
+        app:layout_constraintTop_toTopOf="@+id/cardView42ffdsfa">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/item1"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_margin="3dp"
+            app:riv_corner_radius="4dip" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView42ffdsfa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="6dp"
+        android:backgroundTint="#FFFFFF"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/cardView4a"
+        app:layout_constraintTop_toTopOf="@+id/cardView4a">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/item2"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_margin="3dp"
+            app:riv_corner_radius="4dip" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView4a"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:backgroundTint="#FFFFFF"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/cardView666"
+        app:layout_constraintTop_toTopOf="@+id/textType">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/item3"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_margin="3dp"
+            app:riv_corner_radius="4dip" />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/textType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/bold"
+        android:text="Ranked Solo"
+        android:textColor="#FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textDays"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/regular"
+        android:text="2 дня назад"
+        android:textColor="#FFFFFF"
+        android:textSize="11sp"
+        app:layout_constraintStart_toStartOf="@+id/textType"
+        app:layout_constraintTop_toBottomOf="@+id/textType" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="12dp"
+        android:backgroundTint="#00FFFFFF"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textDays"
+        app:layout_constraintTop_toBottomOf="@+id/textDays">
+
+        <ImageView
+            android:id="@+id/imageChampion"
+            android:layout_width="38dp"
+            android:layout_height="38dp" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:backgroundTint="#FFFFFF"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/cardView5"
+        app:layout_constraintStart_toEndOf="@+id/cardView5"
+        app:layout_constraintTop_toTopOf="@+id/cardView5">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/imageSpell1"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_margin="3dp"
+            app:riv_corner_radius="4dip" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:backgroundTint="#FFFFFF"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/cardView3"
+        app:layout_constraintStart_toEndOf="@+id/cardView3"
+        app:layout_constraintTop_toTopOf="@+id/cardView3">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/imageSpell2"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_margin="3dp"
+            app:riv_corner_radius="4dip" />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/textKills"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:fontFamily="@font/bold"
+        android:text="55 / "
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/textDeaths"
+        app:layout_constraintEnd_toStartOf="@+id/textDeaths"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/cardView4"
+        app:layout_constraintTop_toTopOf="@+id/textDeaths" />
+
+    <TextView
+        android:id="@+id/textDeaths"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/bold"
+        android:text="10"
+        android:textColor="#E25BAC"
+        app:layout_constraintEnd_toStartOf="@+id/cardView42"
+        app:layout_constraintStart_toEndOf="@+id/cardView4"
+        app:layout_constraintTop_toTopOf="@+id/cardView42" />
+
+    <TextView
+        android:id="@+id/textAssists"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:fontFamily="@font/bold"
+        android:text=" / 10"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/textDeaths"
+        app:layout_constraintEnd_toStartOf="@+id/cardView42"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textDeaths"
+        app:layout_constraintTop_toTopOf="@+id/textDeaths" />
+
+    <TextView
+        android:id="@+id/textKDA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:fontFamily="@font/regular"
+        android:text="1.89:1 KDA"
+        android:textColor="#FFFFFF"
+        android:textSize="11sp"
+        app:layout_constraintEnd_toEndOf="@+id/textAssists"
+        app:layout_constraintStart_toStartOf="@+id/textKills"
+        app:layout_constraintTop_toBottomOf="@+id/textDeaths" />
+
+    <TextView
+        android:id="@+id/textCS_killpercent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/regular"
+        android:gravity="center"
+        android:text="116 CS - 67% Уч. в\nуб."
+        android:textColor="#FFFFFF"
+        android:textSize="11sp"
+        app:layout_constraintEnd_toEndOf="@+id/textKDA"
+        app:layout_constraintStart_toStartOf="@+id/textKDA"
+        app:layout_constraintTop_toBottomOf="@+id/textKDA" />
+
+    <LinearLayout
+        android:layout_width="32dp"
+        android:layout_height="30dp"
+        android:background="@drawable/win_galochka_back"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/win_galochka" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

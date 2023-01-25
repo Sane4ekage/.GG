@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/lolFragment"
+        android:icon="@drawable/selector_lol"
+        android:title="●"/>
+    <item
+        android:id="@+id/valorantFragment"
+        android:icon="@drawable/selector_valorant"
+        android:title="●" />
+    <item
+        android:id="@+id/secretFragment"
+        android:icon="@drawable/selector_question"
+        android:title="●" />
+</menu>
