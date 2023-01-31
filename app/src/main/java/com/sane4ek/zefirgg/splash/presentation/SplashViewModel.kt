@@ -46,16 +46,18 @@ class SplashViewModel : ViewModel() {
         summonerTask.joinAll()
 
         // берем каждый матч по его id
+        val time = System.currentTimeMillis()
         runBlocking {
             withContext(coroutineContext) {
                 val matchesTask = arrayListOf<Job>()
                 matchesTask.add(getQueues(id = summoner.id, api_key = api_key))
-                matchesIdList.forEach {
+                matchesIdList.take(5).forEach {
                     matchesTask.add(getMatch(id = it, api_key = api_key))
                 }
                 matchesTask.joinAll()
             }
         }
+        Log.i(TAG, "getAllInfo: код выполнялся ${(System.currentTimeMillis() - time).toDouble() / 1000} секунд")
         // найти где Ranked Solo/Duo
         matchesList.forEach { match ->
             rankedMatchesIdList.forEach { id ->
@@ -74,6 +76,8 @@ class SplashViewModel : ViewModel() {
             mutableSuccessLiveData.value = UserDataModel(
                 summoner = summonerLiveData.value!!,
                 matches = matchesList,
+                idsMatches = matchesIdList,
+                rankedIdsMatches = rankedMatchesIdList,
                 queues = queuesList
             )
         }

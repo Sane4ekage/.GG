@@ -6,15 +6,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.sane4ek.zefirgg.R
 import com.sane4ek.zefirgg.databinding.ItemHistoryLoseBinding
 import com.sane4ek.zefirgg.databinding.ItemHistoryWinBinding
 import com.sane4ek.zefirgg.splash.data.model.SummonerData
 import com.sane4ek.zefirgg.splash.data.model.lal.MatchData
 import com.sane4ek.zefirgg.splash.data.model.lal.Participant
 import com.sane4ek.zefirgg.utils.correctRoundScaleTo2
-import java.time.LocalDate
 import java.util.*
-import kotlin.collections.ArrayList
 import kotlin.math.roundToInt
 
 private const val TYPE_WIN: Int = 0
@@ -67,7 +66,10 @@ class HistoryAdapter(private var matchesList: ArrayList<MatchData>, private val 
             val now = Calendar.getInstance()
             val diff = now.time.time - model.info.gameEndTimestamp
             var date = 0
-            if (diff < 84600000) { // часы
+            if (diff <= 3600000) { // минуты
+                date = (diff / 1000 / 60).toDouble().roundToInt()
+                binding.textDays.text = "${date} м. назад"
+            } else if (diff < 84600000) { // часы
                 date = ((diff / 1000 / 60).toDouble() / 60.toDouble()).roundToInt()
                 binding.textDays.text = "${date} ч. назад"
             } else { // дни
@@ -159,7 +161,10 @@ class HistoryAdapter(private var matchesList: ArrayList<MatchData>, private val 
             val now = Calendar.getInstance()
             val diff = now.time.time - model.info.gameEndTimestamp
             var date = 0
-            if (diff < 84600000) { // часы
+            if (diff <= 3600000) { // минуты
+                date = (diff / 1000 / 60).toDouble().roundToInt()
+                binding.textDays.text = "${date} м. назад"
+            } else if (diff < 84600000) { // часы
                 date = ((diff / 1000 / 60).toDouble() / 60.toDouble()).roundToInt()
                 binding.textDays.text = "${date} ч. назад"
             } else { // дни
@@ -241,13 +246,6 @@ class HistoryAdapter(private var matchesList: ArrayList<MatchData>, private val 
         } else {
             (holder as LoseHolder).bind(model = matchesList[position])
         }
-    }
-
-    // очистить кэщ картинок в списке
-    override fun onViewRecycled(holder: RecyclerView.ViewHolder) {
-        super.onViewRecycled(holder)
-//        holder.logo.setImageDrawable(null)
-//        Glide.with(context).clear(holder.logo)
     }
 
     override fun getItemViewType(position: Int): Int {

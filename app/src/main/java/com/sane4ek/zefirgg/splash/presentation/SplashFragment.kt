@@ -1,6 +1,7 @@
 package com.sane4ek.zefirgg.splash.presentation
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -29,6 +30,11 @@ class SplashFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.i("hohol", "onStart: splash")
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

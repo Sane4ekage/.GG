@@ -23,10 +23,10 @@ interface RetrofitService {
 
 
     //--------------- eu ---------------
-    @GET("lol/match/v5/matches/by-puuid/{puuid}/ids?count=15")
+    @GET("lol/match/v5/matches/by-puuid/{puuid}/ids?count=8")
     suspend fun getListMatches(@Path("puuid") puuid: String, @Query("api_key") api_key: String) : Response<MatchesListData>
 
-    @GET("lol/match/v5/matches/by-puuid/{puuid}/ids?queue=420&count=15")
+    @GET("lol/match/v5/matches/by-puuid/{puuid}/ids?queue=420&count=8")
     suspend fun getListMatchesRanked(@Path("puuid") puuid: String, @Query("api_key") api_key: String) : Response<MatchesListData>
 
     @GET("lol/match/v5/matches/{match_id}")

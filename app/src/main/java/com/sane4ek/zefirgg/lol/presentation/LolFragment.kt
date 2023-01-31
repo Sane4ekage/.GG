@@ -3,6 +3,8 @@ package com.sane4ek.zefirgg.lol.presentation
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
+import android.service.autofill.FieldClassification.Match
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,6 +24,7 @@ import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.formatter.PercentFormatter
 import com.github.mikephil.charting.utils.MPPointF
 import com.sane4ek.zefirgg.R
+import com.sane4ek.zefirgg.core.data.UserDataModel
 import com.sane4ek.zefirgg.databinding.FragmentLolBinding
 import com.sane4ek.zefirgg.lol.model.LolModel
 import com.sane4ek.zefirgg.splash.data.Queue
@@ -36,7 +39,11 @@ import kotlin.math.roundToInt
 class LolFragment : Fragment() {
 
     private lateinit var binding: FragmentLolBinding
+    private lateinit var userDataModel: UserDataModel
     private val lolViewModel: LolViewModel by viewModels()
+    private var unloadedMatchesIds = ArrayList<String>()
+    private val historyList = ArrayList<MatchData>()
+    private var adapter: HistoryAdapter? = null
 
     private val TAG = "lolfrag"
 
@@ -49,6 +56,11 @@ class LolFragment : Fragment() {
         return binding.root
     }
 
+    override fun onStart() {
+        super.onStart()
+        Log.i("hohol", "onStart: lol")
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -57,29 +69,45 @@ class LolFragment : Fragment() {
     }
 
     private fun init() {
+        // назначаем обсерверы
         lolViewModel.dataFromMatchesLiveData.observe(viewLifecycleOwner, getDataFromMatches())
         lolViewModel.soloQueueDataLiveData.observe(viewLifecycleOwner, getSoloQueue())
         lolViewModel.flexQueueDataLiveData.observe(viewLifecycleOwner, getFlexQueue())
+        lolViewModel.matchesLiveData.observe(viewLifecycleOwner, get20Matches())
 
-        val userDataModel = SharedPrefs.getUserDataModel(Consts.PREFS_APP_DATA, requireContext())
+        // достаем данные пользователя
+        userDataModel = SharedPrefs.getUserDataModel(Consts.PREFS_APP_DATA, requireContext())
+        unloadedMatchesIds.addAll(userDataModel.idsMatches)
+        unloadedMatchesIds = unloadedMatchesIds.drop(5) as ArrayList<String> // убирем те, которые грузим в сплеше (15)
 
+        // фильтруем данные по очередям и матчам
         lolViewModel.getDataFromMatches(matches = userDataModel.matches, puuid = userDataModel.summoner.puuid)
         lolViewModel.getQueuesData(queues = userDataModel.queues)
 
+        // показываем список матчей
         binding.rvHistory.layoutManager = object : LinearLayoutManager(requireContext()) { override fun canScrollVertically() = false }
-        binding.rvHistory.adapter = HistoryAdapter(userDataModel.matches, userDataModel.summoner) { clickOnGame(it) }
+        historyList.addAll(userDataModel.matches)
+        adapter = HistoryAdapter(historyList, userDataModel.summoner) { clickOnGame(it) }
+        binding.rvHistory.adapter = adapter
 
 // ------------- Назначить текста -------------
 
         binding.textLvl.text = " - ${userDataModel.summoner.summonerLevel}"
     }
 
+    private fun get20Matches() = Observer<ArrayList<MatchData>> {
+        historyList.addAll(it)
+        lolViewModel.getDataFromMatches(matches = historyList, puuid = userDataModel.summoner.puuid)
+        adapter?.notifyItemInserted(historyList.size - 1)
+        binding.historyProgressBar.visibility = View.INVISIBLE
+        binding.btnLoadMore.visibility = View.VISIBLE
+    }
 
 
     private fun getDataFromMatches() = Observer<LolModel> {
 // ------------- Назначить текста -------------
-        binding.textWins.text = "${it.wins}W"
-        binding.textLoses.text = "${it.loses}L"
+        binding.textWins.text = "${it.loses}L"
+        binding.textLoses.text = "${it.wins}W"
         binding.textKills.text = "${it.kills}"
         binding.textDeathsAssists.text = " / ${it.deaths}" + " / ${it.assists}"
         binding.textKda.text = "${it.kda}:1"
@@ -122,6 +150,45 @@ class LolFragment : Fragment() {
 
     private fun clickOnGame(it: MatchData) = run {
         Toast.makeText(requireContext(), "пососи чуваш", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun initBtns() {
+        binding.btnLoadMore.setOnClickListener {
+            binding.btnLoadMore.visibility = View.INVISIBLE
+            val matches = ArrayList<String>()
+            if (unloadedMatchesIds.size != 0) {
+                val games = unloadedMatchesIds.take(3) // 20
+                matches.addAll(games)
+                Log.i(TAG, "initBtns: ${unloadedMatchesIds.size}")
+                lolViewModel.get20Matches(matches, userDataModel.rankedIdsMatches, Consts.KEY_API)
+                if (unloadedMatchesIds.size == 3) { // 20
+                    unloadedMatchesIds.clear()
+                } else {
+                    unloadedMatchesIds = unloadedMatchesIds.drop(3) as ArrayList<String> // 20, которые только что загрузили
+                    binding.historyProgressBar.visibility = View.GONE
+                }
+            } else {
+                Toast.makeText(requireContext(), "пошел ты нахуй заебало уже грузить", Toast.LENGTH_LONG).show()
+            }
+        }
+
+        binding.btnOpenClose.setOnClickListener {
+            binding.motionContainer.transitionToEnd()
+        }
+
+        binding.btnOpenClose.setOnClickListener {
+            if (binding.textOpenClose.text == "Открыть") {
+                binding.textDesc.maxLines = 100
+                binding.textOpenClose.text = "Закрыть"
+                binding.imgArrowOpenClose.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.rotate_up))
+                binding.motionContainer.transitionToEnd()
+            } else {
+                binding.textDesc.maxLines = 2
+                binding.textOpenClose.text = "Открыть"
+                binding.imgArrowOpenClose.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.rotate_down))
+                binding.motionContainer.transitionToStart()
+            }
+        }
     }
 
     private fun getRankImageUrl(rank: String) : String {
@@ -182,8 +249,6 @@ class LolFragment : Fragment() {
         return result
     }
 
-
-
     private fun initChart(wins: Int, loses: Int) {
         //вычисляем процент побед
         binding.textWinsPercent.text = "${((wins.toDouble() / (wins + loses)) * 100).roundToInt()}%"
@@ -214,24 +279,5 @@ class LolFragment : Fragment() {
         binding.chart.holeRadius = 72F
         binding.chart.setHoleColor(Color.TRANSPARENT)
         binding.chart.animateY(1000, Easing.EaseInOutQuad)
-    }
-
-    private fun initBtns() {
-        binding.btnOpenClose.setOnClickListener {
-            binding.motionContainer.transitionToEnd()
-        }
-        binding.btnOpenClose.setOnClickListener {
-            if (binding.textOpenClose.text == "Открыть") {
-                binding.textDesc.maxLines = 100
-                binding.textOpenClose.text = "Закрыть"
-                binding.imgArrowOpenClose.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.rotate_up))
-                binding.motionContainer.transitionToEnd()
-            } else {
-                binding.textDesc.maxLines = 2
-                binding.textOpenClose.text = "Открыть"
-                binding.imgArrowOpenClose.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.rotate_down))
-                binding.motionContainer.transitionToStart()
-            }
-        }
     }
 }

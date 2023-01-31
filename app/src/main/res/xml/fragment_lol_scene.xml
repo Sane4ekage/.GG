@@ -22,7 +22,7 @@
             android:textSize="13sp"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="@+id/textLol"
-            motion:layout_constraintTop_toBottomOf="@+id/textLol" >
+            motion:layout_constraintTop_toBottomOf="@+id/textLol">
             <CustomAttribute
                 motion:attributeName="maxLines"
                 motion:customIntegerValue="2" />

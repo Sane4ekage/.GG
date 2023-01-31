@@ -28,7 +28,7 @@ class MainFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-
+        Log.i("hohol", "onStart: mainfrag")
         val navController = Navigation.findNavController(requireActivity(), R.id.mainBottomNavFragmentContainer)
         binding.bottomNavigationView.setupWithNavController(navController)
         binding.bottomNavigationView.itemIconTintList = null

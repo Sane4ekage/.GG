@@ -9,5 +9,7 @@ import java.io.Serializable
 class UserDataModel (
     val summoner: SummonerData,
     val matches: ArrayList<MatchData>,
+    val idsMatches: ArrayList<String>,
+    val rankedIdsMatches: ArrayList<String>,
     val queues: ArrayList<Queue>,
 ) : Serializable
